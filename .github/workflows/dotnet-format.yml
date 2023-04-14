@@ -14,12 +14,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.0.x'
-
     - name: Install dotnet-format tool
-    run: dotnet tool install -g dotnet-format
-
-    - name: Check out code
-    uses: actions/checkout@v2
-
+      run: dotnet tool install -g dotnet-format
+    - name: changed name
+      uses: actions/checkout@v2
     - name: Run dotnet format
-    run: dotnet-format --folder --check --verbosity diagnostic
+      run: dotnet-format --folder --check --verbosity diagnostic
