@@ -13,14 +13,14 @@ namespace DataAccess.Wrapper
         public IUserRepository _user;
         public IUserRepository User
         {
-            get 
-            { 
-                if(_user == null)
+            get
+            {
+                if (_user == null)
                 {
                     UserRepository userRepository2 = new UserRepository(_repoContext);
                     _user = (IUserRepository?)userRepository2;
                 }
-                    return _user; 
+                return _user;
             }
         }
         public RepositoryWrapper(InternetShopContext repositoryContext)

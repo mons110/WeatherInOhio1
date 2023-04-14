@@ -21,8 +21,8 @@ namespace WeatherInOhio.Controllers
         {
             return Ok(
                 from T in db.Tovaris
-                                join S in db.Sklads on T.Id equals S.Idtovara
-                                select new { Id = T.Id, Title = T.Title, Price=T.Price,Amount = S.Amount }
+                join S in db.Sklads on T.Id equals S.Idtovara
+                select new { Id = T.Id, Title = T.Title, Price = T.Price, Amount = S.Amount }
                 );
         }
         [HttpGet("{Title}")]
@@ -50,7 +50,7 @@ namespace WeatherInOhio.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put([Required] int Id, string Title = "", decimal Price = 0,string Desc = "")
+        public IActionResult Put([Required] int Id, string Title = "", decimal Price = 0, string Desc = "")
         {
             try
             {
@@ -77,4 +77,3 @@ namespace WeatherInOhio.Controllers
         }
     }
 }
-    

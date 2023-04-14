@@ -20,7 +20,7 @@ namespace WeatherInOhio.Controllers
         [HttpGet("{id}")]
         public IActionResult GetName([Required] int Id)
         {
-            return Ok(db.Comments.Where(p => p.GoodId== Id).ToList());
+            return Ok(db.Comments.Where(p => p.GoodId == Id).ToList());
         }
 
         [HttpPost]

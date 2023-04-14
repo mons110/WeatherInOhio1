@@ -9,7 +9,7 @@ using DataAccess.Repository;
 
 namespace Domain.Repository
 {
-    public class UserRepository :RepositoryBase<User>
+    public class UserRepository : RepositoryBase<User>
     {
         public UserRepository(InternetShopContext repositoryContext)
             : base(repositoryContext)
