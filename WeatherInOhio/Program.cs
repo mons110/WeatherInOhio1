@@ -30,9 +30,9 @@ namespace WeatherInOhio
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                Version = "v1",
-                   Title = "Интернет-магазин Gustavo Fring",
-               Description = "Welcome to ",
+                    Version = "v1",
+                    Title = "Интернет-магазин Gustavo Fring",
+                    Description = "Welcome to ",
                     Contact = new OpenApiContact
                     {
                         Name = "Пример контакта",
