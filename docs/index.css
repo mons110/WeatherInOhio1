@@ -75,6 +75,9 @@ body{
 		width:100%;
 	}
 }
+.big{
+	width:95%;
+}
 .hub {
 	width: 10%;
 }
