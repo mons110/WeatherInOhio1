@@ -1,0 +1,80 @@
+h1 {
+	color: red;
+}
+body{
+	margin: 0;
+}
+.header {
+
+	padding: 80px;
+	text-align: center;
+	background: #23d162;
+	color: white;
+}
+.navbar {
+	overflow:hidden;
+	text-align: center;
+	padding: 10px;
+	background-color:black;
+}
+.navbar a{
+	float:left;
+	display:block;
+	color:aliceblue;
+	text-align:center;
+	padding:14px 20px;
+	text-decoration:wavy;
+}
+.navbar a.right{
+	float:right;
+	color:green;
+}
+.navbar a.back{
+	float:none;
+	text-align:center;
+	color:green;
+}
+.navbar a:hover{
+	background-color:#ddd;
+	color:black;
+}
+.hahaha{
+	width:50%;
+}
+.row{
+	display:flex;
+}
+.side{
+	background-color:whitesmoke;
+	padding:20px;
+}
+.main{
+	flex:70;
+	background-color:whitesmoke;
+	padding:20px;
+}
+.void{
+	background-color:black;
+}
+*{
+	box-sizing:border-box;
+}
+.footer{
+	padding:150px;
+	text-align:center;
+	background-image: url(photo/dub.jpg);
+}
+@media screen and (max-width: 700px){
+	.row{
+		flex-direction:column;
+	}
+}
+@media screen and (max-width: 400px){
+	.navbar a{
+		float:none;
+		width:100%;
+	}
+}
+.hub {
+	width: 10%;
+}
