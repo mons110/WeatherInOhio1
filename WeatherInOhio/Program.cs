@@ -19,7 +19,11 @@ namespace WeatherInOhio
 
             // Add services to the container.
             builder.Services.AddDbContext<InternetShopContext>(
-                optionsAction: options => options.UseSqlServer(connectionString: "Server = SKELETAL-COMPUT;Database = InternetShop; Trusted_Connection = True; Encrypt = False;"));
+                optionsAction: options => options.UseSqlServer(
+                    connectionString: "Server = SKELETAL-COMPUT;Database = InternetShop; Trusted_Connection = True; Encrypt = False;"));
+
+            builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddDbContext<InternetShopContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("InternetShopContext"),
@@ -49,8 +53,6 @@ namespace WeatherInOhio
             });
 
 
-            builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

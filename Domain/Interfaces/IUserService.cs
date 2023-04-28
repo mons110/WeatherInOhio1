@@ -14,5 +14,6 @@ namespace Domain.Interfaces
         Task Create(User model);
         Task Update(User model);
         Task Delete(int id);
+        //task 10 стр 26 сделать кучу interfaces
     }
 }
