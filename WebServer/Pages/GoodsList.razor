@@ -1,8 +1,17 @@
-﻿@page "/goods"
-@inject 
-<h3>GoodsList</h3>
+﻿@page "/persons"
+@inject IUserService RepBase
+<h3>Users</h3>
 
+<h2>Список людей</h2>
+@foreach (var item in people)
+{
+	<h3>Этого человека @item.Name не существует</h3>
+}
 
 @code {
-	//task 10 str 26 create lots of interfaces
+	private List<User> people = new List<User>();
+	protected override async Task OnInitializedAsync()
+	{
+		people = await RepBase.GetAll();
+	}
 }
