@@ -1,15 +1,15 @@
-﻿@page "/persons"
-@inject IUserService RepBase
-<h3>Users</h3>
+﻿@page "/Tovars"
+@inject ITovariService RepBase
+<h3>Goods</h3>
 
-<h2>Список людей</h2>
+<h2>Список Товаров</h2>
 @foreach (var item in people)
 {
-	<h3>Этого человека @item.Name не существует</h3>
+	<h3>Этого предмета @item.Title "не" существует</h3>
 }
 
 @code {
-	private List<User> people = new List<User>();
+	private List<Tovari> people = new List<Tovari>();
 	protected override async Task OnInitializedAsync()
 	{
 		people = await RepBase.GetAll();
