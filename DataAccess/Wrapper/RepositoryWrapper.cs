@@ -10,7 +10,7 @@ namespace DataAccess.Wrapper
     public class RepositoryWrapper : IRepositoryWrapper
     {
         private InternetShopContext _repoContext;
-        public IUserRepository _user;
+        private IUserRepository _user;
         public IUserRepository User
         {
             get
@@ -18,7 +18,7 @@ namespace DataAccess.Wrapper
                 if (_user == null)
                 {
                     UserRepository userRepository2 = new UserRepository(_repoContext);
-                    _user = (IUserRepository?)userRepository2;
+                    _user = userRepository2 as IUserRepository;
                 }
                 return _user;
             }

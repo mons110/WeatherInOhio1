@@ -1,17 +1,17 @@
 ﻿@page "/Tovars"
-@inject ITovariService RepBase
+@inject ITovariService TovariBase
 <h3>Goods</h3>
 
 <h2>Список Товаров</h2>
-@foreach (var item in people)
+@foreach (var item in tova)
 {
-	<h3>Этого предмета @item.Title "не" существует</h3>
+	<h3>Этого предмета @item.Title с ценой @item.Price "не" существует</h3>
 }
 
 @code {
-	private List<Tovari> people = new List<Tovari>();
+	private List<Tovari> tova = new List<Tovari>();
 	protected override async Task OnInitializedAsync()
 	{
-		people = await RepBase.GetAll();
+		tova = await TovariBase.GetAll();
 	}
 }
