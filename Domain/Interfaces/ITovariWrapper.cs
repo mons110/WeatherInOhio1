@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-	public interface ITovariWrapper
-	{
+    public interface ITovariWrapper
+    {
 
-            ITovariRepository Tovari { get; }
-            Task Save();
+        ITovariRepository Tovari { get; }
+        Task Save();
     }
 }

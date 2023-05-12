@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BusinessLogic.Services
 {
-	public class TovariService: ITovariService
-	{
+    public class TovariService : ITovariService
+    {
         private ITovariWrapper _repositoryWrapper;
         public TovariService(ITovariRepository repositoryWrapper)
         {

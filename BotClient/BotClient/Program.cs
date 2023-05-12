@@ -41,10 +41,10 @@ namespace BotClient
                 Console.WriteLine(tovari.Id + " " + tovari.Title + " " + tovari.Price);
             }
             Console.ReadLine();
-            
+
             cts.Cancel();
         }
-       
+
         static async Task HandleBlaBla(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
 
@@ -126,4 +126,4 @@ namespace BotClient
             return Task.CompletedTask;
         }
     }
-    }
+}

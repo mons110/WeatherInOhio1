@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Wrapper
 {
-	public class TovariWrapper
-	{
+    public class TovariWrapper
+    {
         private InternetShopContext _repoContext;
         private ITovariRepository _tovari;
         public ITovariRepository Tovar
