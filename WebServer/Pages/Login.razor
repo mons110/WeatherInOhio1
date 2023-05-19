@@ -1,0 +1,58 @@
+﻿<h3>Login</h3>
+@page "/login"
+@using WebServer.Auth
+@inject IUserService UserService
+@inject IJSRuntime js
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navManager
+
+<div class="row">
+    <div class="col-1g-4 offset-1g-4 pt-4 pb-4 border">
+        :       <div class="mb-3 text-center">
+            <h3>Login</h3>
+        </div>
+        <div class="mb-3">
+            <label>Login</label>
+            <input @bind="model.Email" type="text" class="form-contol" placeholder="Email" />
+        </div>
+        <div class="mb-3">
+            <label>Password</label>
+            <input @bind="model.Phonenumber" type="text" class="form-contol" placeholder="Password" />
+        </div>
+        <div class="mb-3 d-grid gap-2">
+            <button @onclick="Authenticate" class="btn btn-primary">Login</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private class Model
+    {
+        public string Email { get; set; }
+        public string Phonenumber { get; set; }
+    }
+    private Model model = new Model();
+
+    private async Task Authenticate()
+    {
+        var userAccount = await UserService.Login(model.Email, model.Phonenumber);
+        if (userAccount == null)
+        {
+            await js.InvokeVoidAsync("alert", "Invalid Colyaska");
+            return;
+        }
+        var userSession = new UserSession
+            {
+                Id = userAccount.Id.ToString(),
+                Email = userAccount.Email,
+                FirstName = userAccount.Name,
+                Nickname = userAccount.Nickname,
+                IsAdmin = false,
+                Auth = true
+    };
+        var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
+        await customAuthStateProvider.UpdateAuthenticationStateAsync(userSession);
+        navManager.NavigateTo("/", true);
+
+    }
+}

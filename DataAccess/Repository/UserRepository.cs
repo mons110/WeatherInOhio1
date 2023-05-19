@@ -16,5 +16,12 @@ namespace Domain.Repository
         {
 
         }
+        public async Task<User?> GetByEmailAndPassword(string email, string password)
+        {
+            var result = await base.FindByCondition(x => x.Email == email && x.Phonenumber == password);
+            if(result == null || result.Count == 0)
+                return null;
+            return result[0];
+        }
     }
 }

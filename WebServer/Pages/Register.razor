@@ -1,0 +1,68 @@
+﻿@page "/register"
+
+@using WebServer.Auth;
+@inject IUserService UserService
+@inject IJSRuntime js
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navManager
+
+<div class="row">
+    <div class="col-1g-4 offset-1g-4 pt-4 pb-4 border">
+        :       <div class="mb-3 text-center">
+            <h3>Register</h3>
+        </div>
+        <div class="mb-3">
+            <label>Nickname</label>
+            <input @bind="user.Nickname" type="text" class="form-control" placeholder="Nickname" />
+        </div>
+        <div class="mb-3">
+            <label>Firstname</label>
+            <input @bind="user.Name" type="text" class="form-control" placeholder="Firstname" />
+        </div>
+        <div class="mb-3">
+            <label>Password</label>
+            <input @bind="user.Phonenumber" type="password" class="form-control" placeholder="Your phone" />
+        </div>
+        <div class="mb-3">
+            <label>Email</label>
+            <input @bind="user.Email" type="email" class="form-control" placeholder="Email" />
+        </div>
+        <div class="mb-3">
+            <label>Repeat password</label>
+            <input @bind="CheckPassword" type="password" class="form-control" placeholder="Repeat password" />
+        </div>
+        <div class="mb-3 d-grid gap-2">
+            <button @onclick="AddUser" class="btn btn-primary">Register</button>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private User user = new User();
+    private string CheckPassword;
+
+    private async Task AddUser()
+    {
+        if (user.Phonenumber != CheckPassword)
+        {
+            var message = $"Пароли не совпадают";
+            await js.InvokeVoidAsync("alert", message);
+        }
+        else
+        {
+            user.Id = new Random().Next(int.MaxValue);
+
+            try
+            {
+                await UserService.Create(user);
+                navManager.NavigateTo("/", true);
+            }
+            catch
+            {
+                await js.InvokeVoidAsync("alert", "Данные заполни по-лучше");
+            }
+        }
+
+    }
+}

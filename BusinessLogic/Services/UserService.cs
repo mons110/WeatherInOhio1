@@ -41,5 +41,10 @@ namespace BusinessLogic.Services
             _repositoryWrapper.User.Delete(user.First());
             _repositoryWrapper.Save();
         }
+        public async Task<User?> Login(string email, string phonenumber)
+        {
+            var user = await _repositoryWrapper.User.GetByEmailAndPassword(email, phonenumber);
+            return user;
+        }
     }
 }

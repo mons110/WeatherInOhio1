@@ -9,15 +9,19 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Reflection;
+using Microsoft.AspNetCore.Components.Authorization;
+using WebServer.Auth;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+
 namespace WebServer
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-
+            
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddAuthenticationCore();
             builder.Services.AddDbContext<InternetShopContext>(
         optionsAction: options => options.UseSqlServer(
         connectionString: "Server = SKELETAL-COMPUT;Database = InternetShop; Trusted_Connection = True; Encrypt = False;"));
@@ -28,7 +32,9 @@ namespace WebServer
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<WeatherForecastService>();
-
+            builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            builder.Services.AddScoped<ProtectedSessionStorage>();
+            builder.Services.AddScoped<ProtectedLocalStorage>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
