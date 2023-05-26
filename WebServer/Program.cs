@@ -12,6 +12,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Components.Authorization;
 using WebServer.Auth;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using MudBlazor.Services;
 
 namespace WebServer
 {
@@ -35,6 +36,7 @@ namespace WebServer
             builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             builder.Services.AddScoped<ProtectedSessionStorage>();
             builder.Services.AddScoped<ProtectedLocalStorage>();
+            builder.Services.AddMudServices();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

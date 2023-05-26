@@ -1,0 +1,28 @@
+﻿<h3>OMG YOUR PROFILE</h3>
+@page "/user"
+@using WebServer.Auth;
+@inject IJSRuntime js
+@inject IUserService UserService
+@inject AuthenticationStateProvider authStateProvider
+
+<h1>Ваш профиль</h1>
+    <AuthorizeView>
+        <Authorized>
+            <h5>Никнейм на сайте: @user.Nickname</h5>
+            <h5>Имя: @user.Name</h5>
+            <h5>Почта: @user.Email</h5>
+            <h5>Номер телефона: @user.Phonenumber</h5>
+            <hr />
+        </Authorized>
+    </AuthorizeView>
+
+@code {
+    private User user = new User();
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await UserService.GetById(Convert.ToInt32(user.Id));
+    }
+}
